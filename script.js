@@ -136,10 +136,10 @@ function handleBubbles() {
             i--;
         } else if (bubblesArray[i].distance < bubblesArray[i].radius + player.radius) {
             if (!bubblesArray[i].counted) {
-                // if (bubblesArray[i].sound === 'sound1')
-                // bubblePop1.play();
-                // else
-                // bubblePop2.play();
+                if (bubblesArray[i].sound === 'sound1')
+                    bubblePop1.play();
+                else
+                    bubblePop2.play();
                 score++;
                 bubblesArray[i].counted = true;
                 bubblesArray.splice(i, 1);
@@ -150,9 +150,18 @@ function handleBubbles() {
     }
 }
 
+// Repeating background
+const background = new Image();
+background.src = 'assets/backgrounds/background1.png';
+
+function handleBackground() {
+    ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+}
+
 // Animation loop
 function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    handleBackground();
     handleBubbles();
     player.update();
     player.draw();
